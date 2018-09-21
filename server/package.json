@@ -1,0 +1,20 @@
+{
+  "name": "myapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon index.js DB_NAME=testDB",
+    "pop": "node mongoTester.js"
+  },
+  "dependencies": {
+    "apollo-server": "^2.0.0",
+    "bcrypt": "^3.0.0",
+    "express-jwt": "^5.3.1",
+    "faker": "^4.1.0",
+    "graphql-yoga": "^1.14.12",
+    "jsonwebtoken": "^8.3.0",
+    "mongodb": "^3.1.1",
+    "nodemon": "^1.18.3",
+    "validator": "^10.5.0"
+  }
+}

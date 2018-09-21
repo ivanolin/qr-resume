@@ -1,0 +1,98 @@
+type Query {
+  getIdentity: String
+  getCandidates(filter: String, direction: Int, count: Int, skip: Int): Candidates
+  getCandidate(id: String!): Candidate
+  getMajorData: MajorData!
+  getGPAData: GPAData!
+}
+
+type Mutation {
+  checkIn(attendeeId: String!): StudentId
+  boothSignup(username: String!, password: String!, company: String!): Token!
+  deleteBooth(boothID: String!): String!
+  addAttendee(identity: Identity!, education: Education!, experience: [exp]): StudentId!
+  boothLogin(username: String!, password: String!): Token!
+}
+
+type StudentId {
+  id: String
+}
+
+type Token {
+  token: String
+}
+
+# For Attendee Record (mut/query)
+input Identity {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+}
+
+type cIdentity {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+}
+
+input Education {
+  school: String!
+  major: String!
+  gpa: Float!
+  gradYear: Int
+  gradMonth: String!
+}
+
+type cEducation {
+  school: String!
+  major: String!
+  gpa: Float!
+  gradYear: Int
+  gradMonth: String!
+}
+
+input exp {
+  link: String
+}
+
+input Experience {
+  links: [exp]
+}
+
+type cExperience {
+  links: [String]
+}
+
+type Candidate {
+    _id: String!,
+    identity: cIdentity!, 
+    education: cEducation!, 
+    experience: cExperience!
+}
+
+type Candidates {
+  total: Int!,
+  candidates: [Candidate]
+}
+
+type MajorData {
+  booth: [MajorDataPoint!]!
+  global: [MajorDataPoint!]!
+}
+
+type MajorDataPoint {
+  major: String!
+  count: Int!
+}
+
+type GPAData {
+  booth: [GPADataPoint!]!
+  global: [GPADataPoint!]!
+}
+
+type GPADataPoint {
+  bucket: Float!
+  count: Int!
+}
